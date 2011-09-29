@@ -1,10 +1,10 @@
 class Game
-  r: null
+  raph: null
   WIDTH: 1024
   HEIGHT: 768
 
   constructor: ->
-    @r = Raphael 0, 0, @WIDTH, @HEIGHT
+    @raph = Raphael 0, 0, @WIDTH, @HEIGHT
 
   rnd: ->
     Math.random()
@@ -14,3 +14,16 @@ class Game
 
   getY: ->
     @rnd() * @HEIGHT
+
+
+Game.animate = (render, element) ->
+  lastFrame = +new Date
+  running = undefined
+
+  animation = (now) ->
+    if running != false
+      requestAnimationFrame animation, element
+      running = render(now - lastFrame)
+      lastFrame = now
+
+  animation lastFrame
