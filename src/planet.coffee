@@ -7,3 +7,6 @@ class Planet
       fill: "hsb(#{@color}, .7, .9)"
       stroke: "none"
     )
+
+Planet.MAX_SIZE = 50
+Planet.MIN_SIZE = 30
