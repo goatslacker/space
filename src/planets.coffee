@@ -21,6 +21,13 @@ class Planets
     @planets.push planet
     planet.draw()
 
+  destroyAll: ->
+    i = 0
+
+    while i < @planets.length
+      planet = @planets.shift()
+      planet.value.remove()
+
   planetDoesntExist: (x, y, radius) ->
     i = 0
 

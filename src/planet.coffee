@@ -1,10 +1,12 @@
 class Planet
 
   constructor: (@x, @y, @radius, @color) ->
+    @radius or= Planet.MIN_RADIUS
+    @color or= 0.5
 
   draw: ->
     @value = game.raph.circle(@x, @y, @radius).attr(
-      fill: "hsb(#{@color}, .7, .9)"
+      fill: "hsb(#{@color}, 0.7, 0.9)"
       stroke: "none"
     )
 
