@@ -3,12 +3,21 @@ class Planet
   constructor: (@x, @y, @radius, @color) ->
     @radius or= Planet.MIN_RADIUS
     @color or= 0.5
+    @gravitational_pull = @radius * 3
 
   draw: ->
     @value = game.raph.circle(@x, @y, @radius).attr(
       fill: "hsb(#{@color}, 0.7, 0.9)"
       stroke: "none"
     )
+
+    @gravity = game.raph.circle(@x, @y, @gravitational_pull).attr(
+      fill: "none",
+      stroke: "red"
+    ).hide()
+
+  showGravity: ->
+    @gravity.show()
 
   metrics: ->
     @value.getBBox()

@@ -27,8 +27,9 @@ planets = new Planets
 # testing
 planets.destroyAll()
 
-planet = new Planet 400, 300, 50
+planet = new Planet 400, 300, 70
 planet.draw()
+planet.showGravity()
 
 missile = new SmallMissile 500, 765
 missile.fire 270, 0.5
