@@ -16,6 +16,14 @@ class Game
   getColor: ->
     (Math.floor(Math.random() * 10) + 1) / 10
 
+  circle_collision: (c1, c2) ->
+    dx = c1.x - c2.x
+    dy = c1.y - c2.y
+
+    dist = c1.radius + c2.radius
+
+    (dx * dx) + (dy * dy) <= (dist * dist)
+
   rect_collision: (box, x, y) ->
     true if x > box.x and x < (box.x + box.width) and y > box.y and y < (box.y + box.height)
     false

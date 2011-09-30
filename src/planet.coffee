@@ -11,5 +11,8 @@ class Planet
   hwxy: ->
     @value.getBBox()
 
-Planet.MAX_RADIUS = 50
-Planet.MIN_RADIUS = 30
+Planet.getRadius = ->
+  Math.ceil(Math.random() * (Planet.MAX_RADIUS - Planet.MIN_RADIUS)) + Planet.MIN_RADIUS
+
+Planet.MAX_RADIUS = 70
+Planet.MIN_RADIUS = 40
