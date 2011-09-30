@@ -4,4 +4,4 @@ class SmallMissile extends Missile
     super @x, @y, 3
 
   speed: 10
-  acceleration: 100
+  acceleration: 500

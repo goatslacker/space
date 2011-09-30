@@ -17,4 +17,4 @@ class Missile extends Element
   fire: (angle = 0, power = 1) ->
     speed = @speed * power
 
-    @animate @value, angle, speed
+    @animate angle, speed

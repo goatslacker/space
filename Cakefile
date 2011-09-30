@@ -17,7 +17,6 @@ code = ->
 
   c
 
-
 task 'code', 'get the code', (options) ->
   print code()
 

@@ -25,5 +25,5 @@ planets = new Planets
 
 
 # testing
-missile = new SmallMissile 20, 20
-missile.fire 0, .15
+missile = new SmallMissile 500, 765
+missile.fire 270, 0.5
