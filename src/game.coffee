@@ -16,6 +16,20 @@ class Game
   getColor: ->
     (Math.floor(Math.random() * 10) + 1) / 10
 
+  time_to_collision: (c1, c2) ->
+    t = 0
+
+    A = (c1.vx * c1.vx) + (c1.vy * c1.vy) - 2 * c1.vx * c2.vx + (c2.vx * c2.vx) - 2 * c1.vy * c2.vy + (c2.vy * c2.vy)
+    B = -c1.x * c1.vx - c1.y * c1.vy + c1.vx * c2.x + c1.vy * c2.y + c1.x * c2.vx - c2.x * c2.vx + c1.y * c2.vy - c2.y * c2.vy
+    C = (c1.vx * c1.vx) + (c1.vy * c1.vy) - 2 * c1.vx * c2.vx + (c2.vx * c2.vx) - 2 * c1.vy * c2.vy + (c2.vy * c2.vy)
+    D = (c1.x * c1.x) + (c1.y * c1.y) - (c1.r * c1.r) - 2 * c1.x * c2.x + (c2.x * c2.x) - 2 * c1.y * c2.y + (c2.y * c2.y) - 2 * c1.r * c2.r - (c2.r * c2.r)
+    disc = ((-2 * B) * (-2 * B)) - 4 * C * D
+
+    if disc >= 0
+      t = Math.min(Math.min(t, 0.5 * (2 * B - Math.sqrt(disc)) / A), 0.5 * (2 * B + Math.sqrt(disc)) / A)
+
+    t
+
   circle_collision: (c1, c2) ->
     dx = c1.x - c2.x
     dy = c1.y - c2.y
