@@ -14,11 +14,7 @@ class Missile extends Element
   acceleration: 10
   weight: 100
 
-  fire: (aim = 0, power = 1) ->
+  fire: (angle = 0, power = 1) ->
     speed = @speed * power
 
-    @animate(@value, (=>
-      @x = @x + speed
-      @y = @y + speed
-      [speed, 0]
-    ))
+    @animate @value, angle, speed

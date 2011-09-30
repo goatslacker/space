@@ -6,10 +6,22 @@ class Element
   isOffScreen: (x, y) ->
     x > Game.WIDTH or y > Game.HEIGHT or x < 0 or y < 0
 
-  animate: (el, getXY) ->
+  animate: (el, angle, speed) ->
+    [x, y] = @getPath angle, speed
+
     Game.animate((delta) =>
-      [x, y] = getXY()
+      @x += x
+      @y += y
+
       el.translate(x * delta / 16, y * delta / 16)
 
-      false if @isOffScreen(x, y)
+      false if @isOffScreen(@x, @y)
     )
+
+  getPath: (angle, speed) ->
+    angle = angle * (Math.PI / 180)
+
+    x = speed * Math.cos angle
+    y = speed * Math.sin angle
+
+    [x, y]
