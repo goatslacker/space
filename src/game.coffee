@@ -25,8 +25,8 @@ class Game
     (dx * dx) + (dy * dy) <= (dist * dist)
 
   rect_collision: (box, x, y) ->
-    true if x > box.x and x < (box.x + box.width) and y > box.y and y < (box.y + box.height)
-    false
+    return true if x > box.x and x < (box.x + box.width) and y > box.y and y < (box.y + box.height)
+    return false
 
 # TODO: animations should be performed server-side. Client-side we just update the positions
 Game.animate = (render, element) ->

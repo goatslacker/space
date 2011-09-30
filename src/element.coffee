@@ -3,8 +3,11 @@ class Element
   constructor: (@x, @y) ->
     throw "Coordinates are required" if @x is null or @y is null
 
-  isOffScreen: (x, y) ->
-    x > Game.WIDTH or y > Game.HEIGHT or x < 0 or y < 0
+  isOffScreen: ->
+    @x > Game.WIDTH or @y > Game.HEIGHT or @x < 0 or @y < 0
+
+  collision: ->
+    !planets.planetDoesntExist(@x, @y, @radius)
 
   animate: (el, angle, speed) ->
     [x, y] = @getPath angle, speed
@@ -15,7 +18,7 @@ class Element
 
       el.translate(x * delta / 16, y * delta / 16)
 
-      false if @isOffScreen(@x, @y)
+      false if @isOffScreen() or @collision()
     )
 
   getPath: (angle, speed) ->

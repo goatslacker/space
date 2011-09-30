@@ -8,8 +8,10 @@ class Planet
       stroke: "none"
     )
 
-  hwxy: ->
-    @value.getBBox()
+  metrics: ->
+    o = @value.getBBox()
+    o.radius = @radius
+    o
 
 Planet.getRadius = ->
   Math.ceil(Math.random() * (Planet.MAX_RADIUS - Planet.MIN_RADIUS)) + Planet.MIN_RADIUS
