@@ -16,6 +16,10 @@ class Game
   getColor: ->
     (Math.floor(Math.random() * 10) + 1) / 10
 
+  rect_collision: (box, x, y) ->
+    true if x > box.x and x < (box.x + box.width) and y > box.y and y < (box.y + box.height)
+    false
+
 # TODO: animations should be performed server-side. Client-side we just update the positions
 Game.animate = (render, element) ->
   lastFrame = +new Date
