@@ -10,5 +10,15 @@ class Missile extends Element
       stroke: "none"
     )
 
-  fire: (x, y) ->
-    @animate(this, 300)
+  speed: 5
+  acceleration: 10
+  weight: 100
+
+  fire: (aim = 0, power = 1) ->
+    speed = @speed * power
+
+    @animate(@value, (=>
+      @x = @x + speed
+      @y = @y + speed
+      [speed, 0]
+    ))
