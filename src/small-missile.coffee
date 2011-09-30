@@ -5,6 +5,3 @@ class SmallMissile extends Missile
 
   speed: 10
   acceleration: 100
-
-  fire: ->
-    super

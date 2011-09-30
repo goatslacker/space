@@ -2,7 +2,7 @@ class Stars
 
   constructor: ->
     i = 0
-    while i < 1000
+    while i < Game.STARS
       @addStar game.getX(), game.getY()
       i += 1
 

@@ -13,6 +13,8 @@ class Game
   getY: ->
     @rnd() * Game.HEIGHT
 
+  getColor: ->
+    (Math.floor(Math.random() * 10) + 1) / 10
 
 # TODO: animations should be performed server-side. Client-side we just update the positions
 Game.animate = (render, element) ->
@@ -31,3 +33,5 @@ Game.animate = (render, element) ->
 
 Game.WIDTH = 1024
 Game.HEIGHT = 768
+Game.PLANETS = 5
+Game.STARS = 1000
