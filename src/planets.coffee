@@ -26,15 +26,7 @@ class Planets
 
     while i < @planets.length
       planet = @planets[i]
-
-      c1 = planet.metrics()
-      c2 = (
-        x: x,
-        y: y,
-        radius: radius
-      )
-
-      return false if game.circle_collision c1, c2
+      return false if game.circle_collision(planet, (x: x, y: y, radius: radius))
       i += 1
 
     true

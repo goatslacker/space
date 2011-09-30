@@ -10,8 +10,12 @@ document.body.style.background = "black"
   window.oRequestAnimationFrame
 )()
 
+# debugging
 @print = (msg...) ->
   console.log msg...
+
+@debug = ->
+  (missile: missile, planets: planets, game: game, stars: stars)
 
 
 # initialize components

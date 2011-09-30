@@ -9,9 +9,7 @@ class Planet
     )
 
   metrics: ->
-    o = @value.getBBox()
-    o.radius = @radius
-    o
+    @value.getBBox()
 
 Planet.getRadius = ->
   Math.ceil(Math.random() * (Planet.MAX_RADIUS - Planet.MIN_RADIUS)) + Planet.MIN_RADIUS

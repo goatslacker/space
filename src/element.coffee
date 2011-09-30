@@ -6,7 +6,7 @@ class Element
   isOffScreen: ->
     @x > Game.WIDTH or @y > Game.HEIGHT or @x < 0 or @y < 0
 
-  collision: ->
+  hasCollided: ->
     !planets.planetDoesntExist(@x, @y, @radius)
 
   animate: (el, angle, speed) ->
@@ -18,7 +18,7 @@ class Element
 
       el.translate(x * delta / 16, y * delta / 16)
 
-      false if @isOffScreen() or @collision()
+      false if @isOffScreen() or @hasCollided()
     )
 
   getPath: (angle, speed) ->
