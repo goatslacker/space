@@ -10,13 +10,13 @@ class Element
     !planets.planetDoesntExist(@x, @y, @radius)
 
   animate: (el, angle, speed) ->
-    [x, y] = @getPath angle, speed
+    [@vx, @vy] = @getPath angle, speed
 
     Game.animate((delta) =>
-      @x += x
-      @y += y
+      @x += @vx
+      @y += @vy
 
-      el.translate(x * delta / 16, y * delta / 16)
+      el.translate(@vx * delta / 16, @vy * delta / 16)
 
       false if @isOffScreen() or @hasCollided()
     )
