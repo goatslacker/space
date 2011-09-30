@@ -3,7 +3,7 @@ class Planets
   constructor: ->
     i = 0
     while i < Game.PLANETS
-      size = Math.ceil(Math.random() * Planet.MAX_SIZE) + Planet.MIN_SIZE
+      radius = Math.ceil(Math.random() * Planet.MAX_RADIUS) + Planet.MIN_RADIUS
       color = game.getColor()
 
       loop
@@ -11,13 +11,13 @@ class Planets
         y = game.getY()
         break if @planetDoesntExist x, y
 
-      @addPlanet x, y, size, color
+      @addPlanet x, y, radius, color
       i += 1
 
   planets: []
 
-  addPlanet: (x, y, size, color) ->
-    planet = new Planet x, y, size, color
+  addPlanet: (x, y, radius, color) ->
+    planet = new Planet x, y, radius, color
     @planets.push planet
     planet.draw()
 

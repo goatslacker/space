@@ -1,9 +1,9 @@
 class Planet
 
-  constructor: (@x, @y, @size, @color) ->
+  constructor: (@x, @y, @radius, @color) ->
 
   draw: ->
-    @value = game.raph.circle(@x, @y, @size).attr(
+    @value = game.raph.circle(@x, @y, @radius).attr(
       fill: "hsb(#{@color}, .7, .9)"
       stroke: "none"
     )
@@ -11,5 +11,5 @@ class Planet
   hwxy: ->
     @value.getBBox()
 
-Planet.MAX_SIZE = 50
-Planet.MIN_SIZE = 30
+Planet.MAX_RADIUS = 50
+Planet.MIN_RADIUS = 30
