@@ -16,16 +16,24 @@ class Element
     if pl
       # pull the gravity and planet
       { gravity, planet } = pl
-      print gravity
+#      print gravity
+
+      GRAVITY = gravity / Game.GRAVITY
 
       # use the planets coordinates
       x = planet.x
       y = planet.y
 
       # get the new angle we will point to
-#      angle = gra
+      angle = @getAngle x, y
+#      print gravity
+#      print angle
+#      print @angle
+
+      speed = @vel - (@vel * GRAVITY)
 
       # speed should accelerate towards object
+      print speed * Math.sin @vy
 
       # recalculate the path based on the gravity
 
@@ -56,10 +64,14 @@ class Element
 
   # main caller to animate a given object
   animate: (angle, speed) ->
-    [x, y] = @getPath angle, speed
+    @angle = angle
+    @vel = speed
+
+    # recalculate the path
+    [@vx, @vy] = @getPath()
 
     Game.animate((delta) =>
-      @accelerate delta, x, y
+#      @accelerate delta, x, y
       @updateXY()
       @translate delta
 
@@ -71,11 +83,15 @@ class Element
       false if @isOffScreen() or @hasCollided()
     )
 
-  # returns the point of the path based on a radian and it`s speed
-  getPath: (angle, speed) ->
-    angle = angle * (Math.PI / 180)
+  getAngle: (x, y) ->
+    Math.atan2(y - @y, x - @x) * (180 / Math.PI)
 
-    x = speed * Math.cos angle
-    y = speed * Math.sin angle
+  # returns the point of the path based on a radian and it`s velocity
+  getPath: ->
+    # convert to degrees
+    angle = @angle * (Math.PI / 180)
+
+    x = @vel * Math.cos angle
+    y = @vel * Math.sin angle
 
     [x, y]

@@ -4,6 +4,7 @@ class Planet
     @radius or= Planet.MIN_RADIUS
     @color or= 0.5
     @gravitational_pull = @radius * 3
+    @mass = @radius
 
   draw: ->
     @value = game.raph.circle(@x, @y, @radius).attr(

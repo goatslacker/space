@@ -51,5 +51,6 @@ Game.animate = (render, element) ->
 
 Game.WIDTH = 1024
 Game.HEIGHT = 768
+Game.GRAVITY = 20
 Game.PLANETS = 5
 Game.STARS = 1000
