@@ -28,6 +28,20 @@ class Planets
       planet = @planets.shift()
       planet.value.remove()
 
+  isInGravitationalField: (x, y, radius) ->
+    i = 0
+
+    while i < @planets.length
+      planet = @planets[i]
+      gravity = game.circle_field((x: planet.x, y: planet.y, radius: planet.gravitational_pull ), (x: x, y: y, radius: radius))
+
+      if gravity > 1
+        return (gravity: gravity, planet: planet)
+
+      i += 1
+
+    null
+
   planetDoesntExist: (x, y, radius) ->
     i = 0
 

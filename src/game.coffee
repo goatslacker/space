@@ -17,12 +17,18 @@ class Game
     (Math.floor(Math.random() * 10) + 1) / 10
 
   circle_collision: (c1, c2) ->
+    @circle_field c1, c2 > 1
+
+  circle_field: (c1, c2) ->
     dx = c1.x - c2.x
     dy = c1.y - c2.y
 
     dist = c1.radius + c2.radius
 
-    (dx * dx) + (dy * dy) <= (dist * dist)
+    a = (dx * dx) + (dy * dy)
+    b = dist * dist
+
+    b / a
 
   rect_collision: (box, x, y) ->
     return true if x > box.x and x < (box.x + box.width) and y > box.y and y < (box.y + box.height)

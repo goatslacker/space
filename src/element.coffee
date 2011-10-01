@@ -11,6 +11,12 @@ class Element
   hasCollided: ->
     !planets.planetDoesntExist(@x, @y, @radius)
 
+  inGravity: ->
+    pl = planets.isInGravitationalField(@x, @y, @radius)
+    if pl
+      { gravity, planet } = pl
+      print gravity
+
   # incremental counter used for acceleration
   start: 0
 
@@ -32,6 +38,7 @@ class Element
     @y += @vy
 
   # moves the object on the screen
+  # TODO make private
   translate: (delta) ->
     @value.translate(@vx * delta / 16, @vy * delta / 16)
 
@@ -43,6 +50,8 @@ class Element
       @accelerate delta, x, y
       @updateXY()
       @translate delta
+
+      @inGravity()
 
       # implement a willCollide method which checks where the ball will be at the next frame
       # and determines if the ball will collide
