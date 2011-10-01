@@ -14,8 +14,20 @@ class Element
   inGravity: ->
     pl = planets.isInGravitationalField(@x, @y, @radius)
     if pl
+      # pull the gravity and planet
       { gravity, planet } = pl
       print gravity
+
+      # use the planets coordinates
+      x = planet.x
+      y = planet.y
+
+      # get the new angle we will point to
+#      angle = gra
+
+      # speed should accelerate towards object
+
+      # recalculate the path based on the gravity
 
   # incremental counter used for acceleration
   start: 0
