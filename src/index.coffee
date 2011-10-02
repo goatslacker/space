@@ -27,5 +27,5 @@ planets = new Planets
 #planets.addPlanet 300, 300, 70
 #planets.planets[0].showGravity()
 
-missile = new SmallMissile 500, 765
-missile.fire -90, 0.5
+missile = new SmallMissile 500, 565
+#missile.fire -90, 0.5

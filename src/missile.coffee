@@ -5,7 +5,16 @@ class Missile extends Element
 
     color = @color / 10
 
-    @value = game.raph.circle(@x, @y, @radius).attr(
+    @verts = (
+      m: [@x, @y],
+      l1: [@x + 10, @y - 5],
+      l2: [@x, @y - 10],
+      l3: [@x, @y]
+    )
+
+    svgstring = "M#{@verts.m[0]},#{@verts.m[1]}L#{@verts.l1[0]},#{@verts.l1[1]}L#{@verts.l2[0]},#{@verts.l2[1]}L#{@verts.l3[0]},#{@verts.l3[1]}"
+
+    @value = game.raph.path(svgstring).attr(
       fill: "hsb(#{color}, 1, 1)",
       stroke: "none"
     )
