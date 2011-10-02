@@ -17,7 +17,7 @@ class Game
     (Math.floor(Math.random() * 10) + 1) / 10
 
   circle_collision: (c1, c2) ->
-    @circle_field c1, c2 > 1
+    @circle_field(c1, c2) > 1
 
   circle_field: (c1, c2) ->
     dx = c1.x - c2.x
@@ -51,6 +51,6 @@ Game.animate = (render, element) ->
 
 Game.WIDTH = 1024
 Game.HEIGHT = 768
-Game.GRAVITY = 20
+Game.GRAVITY = 10
 Game.PLANETS = 5
 Game.STARS = 1000

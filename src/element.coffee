@@ -11,46 +11,11 @@ class Element
   hasCollided: ->
     !planets.planetDoesntExist(@x, @y, @radius)
 
-  inGravity: ->
-    pl = planets.isInGravitationalField(@x, @y, @radius)
-    if pl
-      # pull the gravity and planet
-      { gravity, planet } = pl
-#      print gravity
-
-      GRAVITY = gravity / Game.GRAVITY
-
-      # use the planets coordinates
-      x = planet.x
-      y = planet.y
-
-      # get the new angle we will point to
-      angle = @getAngle x, y
-#      print gravity
-#      print angle
-#      print @angle
-
-      speed = @vel - (@vel * GRAVITY)
-
-      # speed should accelerate towards object
-      print speed * Math.sin @vy
-
-      # recalculate the path based on the gravity
-
-  # incremental counter used for acceleration
-  start: 0
-
-  # gets the current speed based on acceleration
-  accelerate: (delta, x, y) ->
-    if (@start < @acceleration)
-      @vx = (@start / @acceleration) * x
-      @vy = (@start / @acceleration) * y
-
-      # increment the start
-      @start += delta
-    else
-      @vx = x
-      @vy = y
+  # applies gravity from sorrounding planets
+  applyGravity: ->
+    [x, y] = planets.getGravitationalPull @
+    @vx += x
+    @vy += y
 
   # updates the coordinates of the element
   updateXY: ->
@@ -71,11 +36,10 @@ class Element
     [@vx, @vy] = @getPath()
 
     Game.animate((delta) =>
-#      @accelerate delta, x, y
+      @applyGravity()
+
       @updateXY()
       @translate delta
-
-      @inGravity()
 
       # implement a willCollide method which checks where the ball will be at the next frame
       # and determines if the ball will collide

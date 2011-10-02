@@ -3,7 +3,7 @@ class Planet
   constructor: (@x, @y, @radius, @color) ->
     @radius or= Planet.MIN_RADIUS
     @color or= 0.5
-    @gravitational_pull = @radius * 3
+    @gravitational_pull = @radius * 4
     @mass = @radius
 
   draw: ->

@@ -28,19 +28,37 @@ class Planets
       planet = @planets.shift()
       planet.value.remove()
 
-  isInGravitationalField: (x, y, radius) ->
+  getGravitationalPull: (el) ->
+    fgX = 0
+    fgY = 0
+
+    {x, y, radius, speed, mass} = el
+
     i = 0
 
     while i < @planets.length
       planet = @planets[i]
-      gravity = game.circle_field((x: planet.x, y: planet.y, radius: planet.gravitational_pull ), (x: x, y: y, radius: radius))
 
-      if gravity > 1
-        return (gravity: gravity, planet: planet)
+      dX = planet.x - x
+      dY = planet.y - y
+      dist = planet.gravitational_pull + radius
+
+      theta = Math.atan2(dY, dX)
+
+      rsq = (dY * dY) + (dX * dX)
+      dsq = dist * dist
+
+      if dsq / rsq > 1
+        force = Game.GRAVITY * mass * planet.mass / rsq
+        fgX += force * Math.cos(theta)
+        fgY += force * Math.sin(theta)
 
       i += 1
 
-    null
+    vX = (fgX / mass) * speed
+    vY = (fgY / mass) * speed
+
+    [vX, vY]
 
   planetDoesntExist: (x, y, radius) ->
     i = 0

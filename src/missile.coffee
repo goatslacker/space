@@ -12,7 +12,7 @@ class Missile extends Element
 
   speed: 5
   acceleration: 10
-  weight: 100
+  mass: 2.5
 
   fire: (angle = 0, power = 1) ->
     speed = @speed * power

@@ -5,3 +5,4 @@ class SmallMissile extends Missile
 
   speed: 10
   acceleration: 500
+  mass: 1.5
