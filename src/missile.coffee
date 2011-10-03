@@ -23,6 +23,7 @@ class Missile extends Element
 
   speed: 5
   mass: 2.5
+  time: 5000
 
   # fires the missile
   # angle is meant to be part of this.
@@ -33,3 +34,8 @@ class Missile extends Element
     @value.rotate @angle
 
     @animate speed
+
+  explode: ->
+    # TODO call new explosion!
+    @value.remove()
+    @value = null
