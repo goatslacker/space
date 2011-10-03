@@ -29,3 +29,5 @@ planets = new Planets
 
 missile = new SmallMissile 500, 565
 missile.fire -90, 0.5
+
+explosion = new Explosion 200, 200, -90
