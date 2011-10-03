@@ -5,10 +5,12 @@ class Missile extends Element
 
     color = @color / 10
 
+    size = @radius * 2
+
     @verts = (
       m: [@x, @y],
-      l1: [@x + 10, @y - 5],
-      l2: [@x, @y - 10],
+      l1: [@x + size, @y - @radius],
+      l2: [@x, @y - size],
       l3: [@x, @y]
     )
 
