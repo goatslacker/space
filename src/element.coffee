@@ -9,7 +9,11 @@ class Element
 
   # checks if element has collided with a planet
   hasCollided: ->
-    !game.planets.planetDoesntExist(@x, @y, @radius)
+    crash = !game.planets.planetDoesntExist(@x, @y, @radius)
+    if crash is true
+      @explode()
+
+    crash
 
   # is still alive?
   doesntExist: ->
