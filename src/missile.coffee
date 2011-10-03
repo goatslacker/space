@@ -37,5 +37,6 @@ class Missile extends Element
 
   explode: ->
     # TODO call new explosion!
-    @value.remove()
-    @value = null
+    if @value
+      @value.remove()
+      @value = null

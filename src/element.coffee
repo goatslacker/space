@@ -66,15 +66,28 @@ class Element
 
   # applies gravity from sorrounding planets
   __applyGravity: ->
+    # retrieve the pull
     [x, y] = game.planets.getGravitationalPull @
+
+    # store the current value
+    vx = @vx
+    vy = @vy
+
+    # increment the velocity
     @vx += x
     @vy += y
+
+    # rotate the element
+    @__rotate vx, vy
+
+  # rotates the element given an X and Y coordinates
+  __rotate: (x, y) ->
+    @value.rotate (Raphael.angle(x, y, @vx, @vy, 0, 0) * -1)
 
   # updates the coordinates of the element
   __updateXY: ->
     @x += @vx
     @y += @vy
-    @value.rotate @vx # FIXME
 
   # moves the object on the screen
   __translate: (delta) ->
