@@ -25,8 +25,11 @@ class Missile extends Element
   mass: 2.5
 
   # fires the missile
-  fire: (angle = 0, power = 1) ->
+  # angle is meant to be part of this.
+  fire: (@angle = 0, power = 1) ->
     # power is an float from 0 - 1
     speed = @speed * power
 
-    @animate angle, speed
+    @value.rotate @angle
+
+    @animate speed

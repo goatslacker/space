@@ -12,12 +12,9 @@ class Element
     !planets.planetDoesntExist(@x, @y, @radius)
 
   # main caller to animate a given object
-  animate: (angle, speed) ->
-    @angle = angle
-    @vel = speed
-
+  animate: (speed) ->
     # recalculate the path
-    [@vx, @vy] = @getPath()
+    [@vx, @vy] = @getPath speed
 
     Game.animate((delta) =>
       # apply gravitational pull from planets to x, y
@@ -38,12 +35,12 @@ class Element
     Math.atan2(y - @y, x - @x) * (180 / Math.PI)
 
   # returns the point of the path based on a radian and it`s velocity
-  getPath: ->
+  getPath: (speed) ->
     # convert to degrees
     angle = @angle * (Math.PI / 180)
 
-    x = @vel * Math.cos angle
-    y = @vel * Math.sin angle
+    x = speed * Math.cos angle
+    y = speed * Math.sin angle
 
     [x, y]
 
@@ -61,6 +58,7 @@ class Element
   __updateXY: ->
     @x += @vx
     @y += @vy
+    @value.rotate @vx # FIXME
 
   # moves the object on the screen
   __translate: (delta) ->
