@@ -1,8 +1,8 @@
-class Planet
+class Planet extends Element
 
-  constructor: (@x, @y, @radius, @color) ->
-    @radius or= Planet.MIN_RADIUS
-    @color or= 0.5
+  constructor: (@x, @y, @radius = Planet.MIN_RADIUS, @color = 0.5) ->
+    super @x, @y
+
     @gravitational_pull = @radius * 4
     @mass = @radius
 

@@ -1,6 +1,6 @@
 class Star
 
-  constructor: (@x, @y) ->
+  constructor: (@x = 0, @y = 0) ->
 
   draw: ->
     game.raph.circle(@x, @y, 1).attr(

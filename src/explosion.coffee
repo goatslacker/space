@@ -1,6 +1,7 @@
 class Explosion extends Element
 
   constructor: (@x, @y, @angle) ->
+    super @x, @y
     throw "Angle was not set" if angle is null
 
     particles_amt = Math.ceil(Math.random() * (Explosion.MAX_PARTICLES - Explosion.MIN_PARTICLES)) + Explosion.MIN_PARTICLES
