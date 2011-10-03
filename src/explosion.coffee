@@ -4,16 +4,19 @@ class Explosion extends Element
     super @x, @y
     throw "Angle was not set" if angle is null
 
-    particles_amt = Math.ceil(Math.random() * (Explosion.MAX_PARTICLES - Explosion.MIN_PARTICLES)) + Explosion.MIN_PARTICLES
+    amount = game.rnd Explosion.MIN_PARTICLES, Explosion.MAX_PARTICLES
 
     i = 0
 
-    while i < particles_amt
-      particle_size = Math.ceil(Math.random() * (Explosion.MAX_SIZE - Explosion.MIN_SIZE)) + Explosion.MIN_SIZE
-      particle_color = 0.1
+    while i < amount
+      size = game.rnd Explosion.MIN_SIZE, Explosion.MAX_SIZE
+      color = Explosion.COLORS[Math.round(Math.random())]
 
-      particle = game.raph.rect(@x + i, @y + i, particle_size, particle_size).attr(
-        fill: "hsb(#{particle_color}, 1, 1)",
+      x = game.rnd(@x - 10, @x + 10)
+      y = game.rnd(@y - 10, @y + 10)
+
+      particle = game.raph.rect(x, y, size, size).attr(
+        fill: "hsb(#{color}, 1, 1)",
         stroke: "none"
       )
 
@@ -25,7 +28,7 @@ class Explosion extends Element
 
 Explosion.MIN_PARTICLES = 100
 Explosion.MAX_PARTICLES = 200
-Explosion.COLORS = []
+Explosion.COLORS = [1, 0.1]
 Explosion.MIN_SIZE = 1
 Explosion.MAX_SIZE = 3
 Explosion.TIME = 250

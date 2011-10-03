@@ -4,17 +4,17 @@ class Game
   constructor: ->
     @raph = Raphael 0, 0, Game.WIDTH, Game.HEIGHT
 
-  rnd: ->
-    Math.random()
+  rnd: (min, max) ->
+    Math.ceil(Math.random() * (max - min)) + min
 
   getX: ->
-    @rnd() * Game.WIDTH
+    @rnd 0, Game.WIDTH
 
   getY: ->
-    @rnd() * Game.HEIGHT
+    @rnd 0, Game.HEIGHT
 
   getColor: ->
-    (Math.floor(Math.random() * 10) + 1) / 10
+    (@rnd 1, 10) / 10
 
   # determine if there has been a collision
   circle_collision: (c1, c2) ->

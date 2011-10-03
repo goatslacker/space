@@ -24,7 +24,7 @@ class Planet extends Element
     @value.getBBox()
 
 Planet.getRadius = ->
-  Math.ceil(Math.random() * (Planet.MAX_RADIUS - Planet.MIN_RADIUS)) + Planet.MIN_RADIUS
+  game.rnd Planet.MIN_RADIUS, Planet.MAX_RADIUS
 
 Planet.MAX_RADIUS = 70
 Planet.MIN_RADIUS = 40
