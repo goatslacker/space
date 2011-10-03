@@ -39,4 +39,8 @@ class Missile extends Element
     if @value
       @value.remove()
       @value = null
+      crater = game.raph.circle(@x, @y, @mass * 20).attr(
+        fill: "black",
+        stroke: "none"
+      )
       explosion = new Explosion @x, @y, 0
