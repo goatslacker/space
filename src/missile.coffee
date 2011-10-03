@@ -36,7 +36,7 @@ class Missile extends Element
     @animate speed
 
   explode: ->
-    # TODO call new explosion!
     if @value
       @value.remove()
       @value = null
+      explosion = new Explosion @x, @y, 0
