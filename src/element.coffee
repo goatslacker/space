@@ -9,7 +9,7 @@ class Element
 
   # checks if element has collided with a planet
   hasCollided: ->
-    !planets.planetDoesntExist(@x, @y, @radius)
+    !game.planets.planetDoesntExist(@x, @y, @radius)
 
   # is still alive?
   doesntExist: ->
@@ -66,7 +66,7 @@ class Element
 
   # applies gravity from sorrounding planets
   __applyGravity: ->
-    [x, y] = planets.getGravitationalPull @
+    [x, y] = game.planets.getGravitationalPull @
     @vx += x
     @vy += y
 

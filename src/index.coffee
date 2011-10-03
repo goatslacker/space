@@ -15,17 +15,16 @@ document.body.style.background = "black"
   console.log msg...
 
 @debug = ->
-  (missile: missile, planets: planets, game: game, stars: stars)
+  game
 
 # initialize components
 game = new Game
-stars = new Stars
-planets = new Planets
+game.init()
 
 # testing
-#planets.destroyAll()
-#planets.addPlanet 300, 300, 70
-#planets.planets[0].showGravity()
+#game.planets.destroyAll()
+#game.planets.addPlanet 300, 300, 70
+#game.planets.planets[0].showGravity()
 
 missile = new SmallMissile 500, 565
 missile.fire -90, 0.5

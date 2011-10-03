@@ -4,6 +4,11 @@ class Game
   constructor: ->
     @raph = Raphael 0, 0, Game.WIDTH, Game.HEIGHT
 
+  init: ->
+    # init components
+    @stars = new Stars
+    @planets = new Planets
+
   rnd: (min, max) ->
     Math.ceil(Math.random() * (max - min)) + min
 
