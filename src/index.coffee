@@ -26,7 +26,13 @@ game.init()
 #game.planets.addPlanet 300, 300, 70
 #game.planets.planets[0].showGravity()
 
-missile = new SmallMissile 500, 565
-missile.fire -90, 0.5
+document.addEventListener("keypress", ((e) ->
 
-#explosion = new Explosion 200, 200, -90
+  fireMissile = ->
+    missile = new SmallMissile 500, 765
+    missile.fire -90, 0.5
+
+  switch e.keyCode
+    when 32 then fireMissile()
+
+), false)
