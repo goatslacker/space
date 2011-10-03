@@ -13,6 +13,14 @@ class Game
   getY: ->
     @rnd 0, Game.HEIGHT
 
+  eitheror: (case1, case2) ->
+    opt = Math.round(Math.random())
+
+    if opt is 1
+      case1
+    else
+      case2
+
   getColor: ->
     (@rnd 1, 10) / 10
 
