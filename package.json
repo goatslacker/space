@@ -1,0 +1,21 @@
+{
+  "name": "space",
+  "version": "0.0.1",
+  "description": "something",
+  "homepage": "https://github.com/goatslacker/space",
+  "author": {
+    "name": "Josh Perez",
+    "email": "josh@goatslacker.com",
+    "url": "https://github.com/goatslacker"
+  },
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }],
+  "bin": { "space": "./bin/space" },
+  "main": "server.js",
+  "dependencies": {
+    "express": "2.4.6"
+  },
+  "preferGlobal" : true
+}
