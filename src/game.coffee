@@ -10,7 +10,7 @@ class Game
     @planets = new Planets
 
   rnd: (min, max) ->
-    Math.ceil(Math.random() * (max - min)) + min
+    Math.floor(Math.random() * (max - min + 1)) + min
 
   getX: ->
     @rnd 0, Game.WIDTH
