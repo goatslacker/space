@@ -65,7 +65,7 @@ class Explosion extends Element
       i = 0
 
       while i < particles
-        @__setTranslation i
+        false if @__setTranslation(i) is false
         i += 1
 
         # move the object on screen
@@ -84,6 +84,8 @@ class Explosion extends Element
     over
 
   __setTranslation: (i) ->
+    return null if @particles[i] is undefined
+
     { @value, verts } = @particles[i]
     [ x, y ] = verts.l[0]
     @angle = @getAngle x, y
@@ -95,9 +97,9 @@ class Explosion extends Element
 
 Explosion.RADIUS = 25
 Explosion.SPEED = 2
-Explosion.MIN_PARTICLES = 200
-Explosion.MAX_PARTICLES = 500
+Explosion.MIN_PARTICLES = 50
+Explosion.MAX_PARTICLES = 200
 Explosion.COLORS = ["red", "orange"]
-Explosion.MIN_SIZE = 2
-Explosion.MAX_SIZE = 4
+Explosion.MIN_SIZE = 1
+Explosion.MAX_SIZE = 2
 Explosion.TIME = 500
