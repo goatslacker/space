@@ -1,7 +1,7 @@
 class SmallMissile extends Missile
 
   constructor: (@x, @y) ->
-    super @x, @y, 5
+    super @x, @y
 
   speed: 10
   mass: 1.5

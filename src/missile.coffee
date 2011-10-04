@@ -1,6 +1,6 @@
 class Missile extends Element
 
-  constructor: (@x, @y, @radius = 5, @color = 10) ->
+  constructor: (@x, @y, @radius = @mass * 2, @color = 10) ->
     super @x, @y
 
     color = @color / 10
