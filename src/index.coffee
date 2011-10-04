@@ -1,5 +1,5 @@
 # setup
-document.body.style.background = "black"
+#document.body.style.background = "black"
 
 # globals
 
@@ -19,7 +19,7 @@ document.body.style.background = "black"
 
 # initialize components
 game = new Game
-game.init()
+#game.init()
 
 # testing
 #game.planets.destroyAll()
@@ -37,5 +37,5 @@ document.addEventListener("keypress", ((e) ->
 
 ), false)
 
-spaceship = new Spaceship 200, 200
-spaceship.draw()
+#spaceship = new Spaceship 200, 200
+#spaceship.draw()
