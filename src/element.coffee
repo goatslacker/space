@@ -5,7 +5,7 @@ class Element
 
   # checks if element is off the screen
   isOffScreen: ->
-    @x > Game.WIDTH or @y > Game.HEIGHT or @x < 0 or @y < 0
+    @x > game.width or @y > game.height or @x < 0 or @y < 0
 
   # is still alive?
   doesntExist: ->

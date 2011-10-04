@@ -1,8 +1,8 @@
 class Stars
 
-  constructor: ->
+  constructor: (@num_stars = Game.STARS) ->
     i = 0
-    while i < Game.STARS
+    while i < @num_stars
       @addStar game.getX(), game.getY()
       i += 1
 

@@ -49,9 +49,5 @@ class App
             align: "center"
         ))
 
-        # FIXME
-        Game.WIDTH = panel.width
-        Game.HEIGHT = panel.height
-
         # initialize the game
-        game.init()
+        game.init panel.width, panel.height

@@ -1,8 +1,8 @@
 class Planets
 
-  constructor: ->
+  constructor: (@num_planets = Game.PLANETS) ->
     i = 0
-    while i < Game.PLANETS
+    while i < @num_planets
       radius = Planet.getRadius()
       color = game.getColor()
 
@@ -28,7 +28,7 @@ class Planets
   destroyAll: ->
     i = 0
 
-    while i < @planets.length
+    while i < @num_planets
       planet = @planets.shift()
       planet.value.remove()
 
@@ -45,7 +45,7 @@ class Planets
     i = 0
 
     # loop through all planets
-    while i < @planets.length
+    while i < @num_planets
       planet = @planets[i]
 
       dX = planet.x - x
@@ -76,8 +76,9 @@ class Planets
   # determines if a planet exists in coordinates provided
   planetDoesntExist: (x, y, radius) ->
     i = 0
+    planets = @planets.length
 
-    while i < @planets.length
+    while i < planets
       planet = @planets[i]
       return false if game.circle_collision(planet, (x: x, y: y, radius: radius))
       i += 1

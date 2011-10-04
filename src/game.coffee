@@ -1,19 +1,19 @@
 class Game
-  init: ->
-    @raph = Raphael 0, 0, Game.WIDTH, Game.HEIGHT
+  init: (@width = Game.WIDTH, @height = Game.HEIGHT, planets, stars) ->
+    @raph = Raphael 0, 0, @width, @height
 
     # init components
-    @stars = new Stars
-    @planets = new Planets
+    @stars = new Stars stars
+    @planets = new Planets planets
 
   rnd: (min, max) ->
     Math.floor(Math.random() * (max - min + 1)) + min
 
   getX: ->
-    @rnd 0, Game.WIDTH
+    @rnd 0, @width
 
   getY: ->
-    @rnd 0, Game.HEIGHT
+    @rnd 0, @height
 
   eitheror: (case1, case2) ->
     opt = Math.round(Math.random())
@@ -67,8 +67,12 @@ Game.animate = (render, element) ->
 
   animation lastFrame
 
-Game.WIDTH = 1024 #5000
-Game.HEIGHT = 768 #5000
+
+# const
 Game.GRAVITY = 10
+
+# defaults
+Game.WIDTH = 1024
+Game.HEIGHT = 768
 Game.PLANETS = 5
 Game.STARS = 1000
