@@ -17,14 +17,19 @@ class App
           handler: tapHandler
         ]
 
-        options = [
+        options = [(
+          xtype: "spacer"
+        ), (
           xtype: "segmentedbutton"
           items: [
             ( text: "Aim", handler: tapHandler )
             ( text: "Power", handler: tapHandler )
             ( text: "Weapon", handler: tapHandler )
+            ( xtype: "spacer" )
           ]
-        ]
+        ), (
+          xtype: "spacer"
+        )]
 
         forward = [
           text: "Fire!"
@@ -38,8 +43,11 @@ class App
           fullscreen: yes
           dockedItems: [
             xtype: "toolbar"
+            ui: "light"
             dock: "bottom"
             items: back.concat options.concat forward
+            defaults:
+              disabled: true
           ]
           defaults:
             scroll: "vertical"
