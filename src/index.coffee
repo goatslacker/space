@@ -1,5 +1,6 @@
 # initialize components
-game = null
+game = new Game
+app = new App
 
 # globals
 @requestAnimationFrame = (->

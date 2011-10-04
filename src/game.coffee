@@ -1,10 +1,7 @@
 class Game
-  raph: null
-
-  constructor: ->
+  init: ->
     @raph = Raphael 0, 0, Game.WIDTH, Game.HEIGHT
 
-  init: ->
     # init components
     @stars = new Stars
     @planets = new Planets

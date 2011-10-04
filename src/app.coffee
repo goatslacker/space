@@ -1,54 +1,57 @@
-Ext.setup
-  tabletStartupScreen: "tablet_startup.png"
-  phoneStartupScreen: "phone_startup.png"
-  icon: "icon.png"
-  glossOnIcon: false
-  onReady: ->
+class App
 
-    tapHandler = (button, event) ->
-      yes
+  constructor: ->
+    Ext.setup
+      tabletStartupScreen: "tablet_startup.png"
+      phoneStartupScreen: "phone_startup.png"
+      icon: "icon.png"
+      glossOnIcon: false
+      onReady: ->
 
-    back = [
-      text: "Skip"
-      ui: "back"
-      handler: tapHandler
-    ]
+        tapHandler = (button, event) ->
+          yes
 
-    options = [
-      xtype: "segmentedbutton"
-      items: [
-        ( text: "Aim", handler: tapHandler )
-        ( text: "Power", handler: tapHandler )
-        ( text: "Weapon", handler: tapHandler )
-      ]
-    ]
+        back = [
+          text: "Skip"
+          ui: "back"
+          handler: tapHandler
+        ]
 
-    forward = [
-      text: "Fire!"
-      ui: "forward"
-      handler: tapHandler
-    ]
+        options = [
+          xtype: "segmentedbutton"
+          items: [
+            ( text: "Aim", handler: tapHandler )
+            ( text: "Power", handler: tapHandler )
+            ( text: "Weapon", handler: tapHandler )
+          ]
+        ]
 
-    panel = new Ext.Panel((
-      id: "toolbartxt"
-      style: "background-color: black"
-      fullscreen: yes
-      dockedItems: [
-        xtype: "toolbar"
-        dock: "bottom"
-        items: back.concat options.concat forward
-      ]
-      defaults:
-        scroll: "vertical"
-        xtype: "panel"
-        layout: "hbox"
-        pack: "justify"
-        align: "center"
-    ))
+        forward = [
+          text: "Fire!"
+          ui: "forward"
+          handler: tapHandler
+        ]
 
-    # FIXME
-    Game.WIDTH = panel.width
-    Game.HEIGHT = panel.height
+        panel = new Ext.Panel((
+          id: "toolbartxt"
+          style: "background-color: black"
+          fullscreen: yes
+          dockedItems: [
+            xtype: "toolbar"
+            dock: "bottom"
+            items: back.concat options.concat forward
+          ]
+          defaults:
+            scroll: "vertical"
+            xtype: "panel"
+            layout: "hbox"
+            pack: "justify"
+            align: "center"
+        ))
 
-    game = new Game
-    game.init()
+        # FIXME
+        Game.WIDTH = panel.width
+        Game.HEIGHT = panel.height
+
+        # initialize the game
+        game.init()
