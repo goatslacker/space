@@ -37,7 +37,7 @@ document.addEventListener("keypress", ((e) ->
 
 ), false)
 
-spaceship = new Spaceship 0, 0
+spaceship = new Spaceship 200, 200
 #print spaceship.toString()
 spaceship.draw()
 #game.raph.path(spaceship.toString()).attr(

@@ -141,7 +141,7 @@ class Spaceship extends Element
 
   # add a rectangle with x, y coordinates to the set
   __addToSet: (x, y, color = "white") ->
-    @set.push(game.raph.rect(x, y, Spaceship.SIZE, Spaceship.SIZE).attr(
+    @set.push(game.raph.rect(@x + x, @y + y, Spaceship.SIZE, Spaceship.SIZE).attr(
       fill: color,
       stroke: color
     ))
