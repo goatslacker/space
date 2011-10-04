@@ -9,9 +9,7 @@ class Explosion extends Element
     while i < amount
       { color, verts } = @getProperties()
 
-      svgstring = "M#{verts.m[0]},#{verts.m[1]}L#{verts.l[0][0]},#{verts.l[0][1]}"
-
-      particle = game.raph.path(svgstring).attr(
+      particle = game.raph.path(game.createSVGString(verts)).attr(
         stroke: "#{color}"
       )
 

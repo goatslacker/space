@@ -9,14 +9,14 @@ class Missile extends Element
 
     @verts = (
       m: [@x, @y],
-      l1: [@x + size, @y - @radius],
-      l2: [@x, @y - size],
-      l3: [@x, @y]
+      l: [
+        [@x + size, @y - @radius],
+        [@x, @y - size],
+        [@x, @y]
+      ]
     )
 
-    svgstring = "M#{@verts.m[0]},#{@verts.m[1]}L#{@verts.l1[0]},#{@verts.l1[1]}L#{@verts.l2[0]},#{@verts.l2[1]}L#{@verts.l3[0]},#{@verts.l3[1]}"
-
-    @value = game.raph.path(svgstring).attr(
+    @value = game.raph.path(game.createSVGString(@verts)).attr(
       fill: "hsb(#{color}, 1, 1)",
       stroke: "none"
     )

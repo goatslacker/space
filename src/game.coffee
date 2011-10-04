@@ -26,6 +26,15 @@ class Game
     else
       case2
 
+  createSVGString: (verts) ->
+    str = "M#{verts.m[0]}, #{verts.m[1]}"
+
+    verts.l.forEach((vert) ->
+      str += "L#{vert[0]}, #{vert[1]}"
+    )
+
+    str
+
   getColor: ->
     (@rnd 1, 10) / 10
 
