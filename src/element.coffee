@@ -7,29 +7,17 @@ class Element
   isOffScreen: ->
     @x > Game.WIDTH or @y > Game.HEIGHT or @x < 0 or @y < 0
 
-  # checks if element has collided with a planet
-  hasCollided: ->
-    crash = !game.planets.planetDoesntExist(@x, @y, @radius)
-    if crash is true
-      @explode()
-
-    crash
-
   # is still alive?
   doesntExist: ->
     @value is null
 
-  timer: 0
-
   # main caller to animate a given object
-  animate: (speed) ->
+  animate: (speed, done) ->
     # recalculate the path
     [@vx, @vy] = @getPath speed
+    areWeDoneYet = done.bind @
 
     Game.animate((delta) =>
-      # update the TTL
-      @__updateTTL delta
-
       # apply gravitational pull from planets to x, y
       @__applyGravity()
 
@@ -38,10 +26,7 @@ class Element
       # move the object on screen
       @__translate delta
 
-      # implement a willCollide method which checks where the ball will be at the next frame
-      # and determines if the ball will collide
-      # if it`s true, then update the ball`s positioning
-      false if @isOffScreen() or @hasCollided() or @doesntExist()
+      areWeDoneYet delta
     )
 
   getAngle: (x, y) ->
@@ -60,13 +45,6 @@ class Element
 
   # "private" methods
   # using the Python PEP-8
-
-  # missiles can only live for so long
-  __updateTTL: (delta) ->
-    @timer += delta
-
-    if @timer > @time
-      @explode()
 
   # applies gravity from sorrounding planets
   __applyGravity: ->

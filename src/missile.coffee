@@ -33,7 +33,24 @@ class Missile extends Element
 
     @value.rotate @angle
 
-    @animate speed
+    @animate speed, @animationComplete
+
+  animationComplete: (delta) ->
+    # update the TTL
+    @__updateTTL delta
+
+    # implement a willCollide method which checks where the ball will be at the next frame
+    # and determines if the ball will collide
+    # if it`s true, then update the ball`s positioning
+    false if @isOffScreen() or @hasCollided() or @doesntExist()
+
+  # checks if element has collided with a planet
+  hasCollided: ->
+    crash = !game.planets.planetDoesntExist(@x, @y, @radius)
+    if crash is true
+      @explode()
+
+    crash
 
   explode: ->
     if @value
@@ -44,3 +61,13 @@ class Missile extends Element
         stroke: "none"
       )
       explosion = new Explosion @x, @y, 0
+
+  timer: 0
+
+  # missiles can only live for so long
+  __updateTTL: (delta) ->
+    @timer += delta
+
+    if @timer > @time
+      @explode()
+
