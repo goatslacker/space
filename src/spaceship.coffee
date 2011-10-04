@@ -14,45 +14,48 @@ class Spaceship
     )
 
     # dynamically build cockpit and body
-    cockpit.forEach @create "cockpit"
-    body.forEach @create "body"
+    cockpit.forEach @__create "cockpit"
+    body.forEach @__create "body"
 
+    @draw()
+
+  # Exports SVG Path
   toString: ->
-    @ship
+    { solid, cockpit, body } = @ship
+    svg = ""
 
+    toSVG = (block) ->
+      [x, y] = block
+      sx = x * Spaceship.SIZE
+      sy = y * Spaceship.SIZE
+
+      mx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
+
+      # base
+      svg += "M#{sx}, #{sy}L#{sx + 1}, #{sy + 1}"
+      # mirror
+      svg += "M#{mx}, #{sy}L#{mx + 1}, #{sy + 1}"
+
+    solid.forEach toSVG
+    cockpit.forEach toSVG
+    body.forEach toSVG
+
+    svg
+
+  # draws the spaceship onto the screen
   draw: ->
     { solid, cockpit, body } = @ship
 
+    # create a set of rectangles
+    @set = game.raph.set()
+
+    # our forEach fn
     drawPixels = (block) =>
-      @drawPixel block[0], block[1]
+      @__drawPixel block[0], block[1]
 
     solid.forEach drawPixels
     cockpit.forEach drawPixels
     body.forEach drawPixels
-
-  # TODO do SVG path instead
-  drawPixel: (x, y) ->
-    sx = x * Spaceship.SIZE
-    sy = y * Spaceship.SIZE
-    game.raph.rect(sx, sy, Spaceship.SIZE, Spaceship.SIZE).attr(
-      fill: "white"
-    )
-
-    @mirror x, y
-
-  mirror: (x, y) ->
-    sx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
-    sy = y * Spaceship.SIZE
-    game.raph.rect(sx, sy, Spaceship.SIZE, Spaceship.SIZE).attr(
-      fill: "white"
-    )
-
-  # draw`s a piece of the spaceship
-  create: (section) ->
-    # returns a function used by forEach when drawing
-    iterator = (block) =>
-      # turn on a block "randomly"
-      @ship[section].push block if @isOn()
 
   map: ->
     # blocks that are always empty
@@ -97,6 +100,42 @@ class Spaceship
   isOn: ->
     Math.round(Math.random()) is 1
 
-Spaceship.SIZE = 1.5
+  # "private" methods
+
+  # draws a pixel on the screen given x and y coordinates
+  __drawPixel: (x, y) ->
+    sx = x * Spaceship.SIZE
+    sy = y * Spaceship.SIZE
+
+    # mirror the output
+    @__mirror x, y
+
+    # add to the set
+    @__addToSet sx, sy
+
+
+  # mirrors the image
+  __mirror: (x, y) ->
+    sx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
+    sy = y * Spaceship.SIZE
+
+    @__addToSet sx, sy
+
+  # draw`s a piece of the spaceship
+  __create: (section) ->
+    # returns a function used by forEach when drawing
+    iterator = (block) =>
+      # turn on a block "randomly"
+      @ship[section].push block if @isOn()
+
+  # add a rectangle with x, y coordinates to the set
+  __addToSet: (x, y) ->
+    @set.push(game.raph.rect(x, y, Spaceship.SIZE, Spaceship.SIZE).attr(
+      fill: "white",
+      stroke: "white"
+    ))
+
+
+Spaceship.SIZE = 1
 Spaceship.X = 6
 Spaceship.Y = 12

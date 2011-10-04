@@ -40,3 +40,7 @@ document.addEventListener("keypress", ((e) ->
 spaceship = new Spaceship
 print spaceship.toString()
 spaceship.draw()
+#game.raph.path(spaceship.toString()).attr(
+#  fill: "white",
+#  stroke: "white"
+#)
