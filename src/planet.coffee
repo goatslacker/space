@@ -1,6 +1,6 @@
 class Planet extends Element
 
-  constructor: (@x, @y, @radius = Planet.MIN_RADIUS, @color = 0.5) ->
+  constructor: (@x = null, @y = null, @radius = Planet.MIN_RADIUS, @color = 0.5) ->
     super @x, @y
 
     @gravitational_pull = @radius * 4

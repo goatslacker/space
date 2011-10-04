@@ -2,7 +2,7 @@
 
 class Spaceship extends Element
 
-  constructor: (@x, @y) ->
+  constructor: (@x = null, @y = null) ->
     super @x, @y
 
     @ship = ( solid: [], cockpit: [], body: [] )
