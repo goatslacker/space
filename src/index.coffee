@@ -1,8 +1,7 @@
-# setup
-#document.body.style.background = "black"
+# initialize components
+game = null
 
 # globals
-
 @requestAnimationFrame = (->
   window.mozRequestAnimationFrame    ||
   window.webkitRequestAnimationFrame ||
@@ -17,15 +16,7 @@
 @debug = ->
   game
 
-# initialize components
-game = new Game
-#game.init()
-
-# testing
-#game.planets.destroyAll()
-#game.planets.addPlanet 300, 300, 70
-#game.planets.planets[0].showGravity()
-
+# listeners
 document.addEventListener("keypress", ((e) ->
 
   fireMissile = ->

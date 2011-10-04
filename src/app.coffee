@@ -4,34 +4,51 @@ Ext.setup
   icon: "icon.png"
   glossOnIcon: false
   onReady: ->
-    game.init()
 
     tapHandler = (button, event) ->
       yes
 
-    buttons = [
-      text: "Back",
-      ui: "back",
+    back = [
+      text: "Skip"
+      ui: "back"
       handler: tapHandler
     ]
 
-    dockedItems = [
-      xtype: "toolbar",
-      dock: "top",
-      items: buttons
+    options = [
+      xtype: "segmentedbutton"
+      items: [
+        ( text: "Aim", handler: tapHandler )
+        ( text: "Power", handler: tapHandler )
+        ( text: "Weapon", handler: tapHandler )
+      ]
     ]
 
-    new Ext.Panel((
-      id: "toolbartxt",
-      fullscreen: yes,
-      dockedItems: dockedItems,
+    forward = [
+      text: "Fire!"
+      ui: "forward"
+      handler: tapHandler
+    ]
+
+    panel = new Ext.Panel((
+      id: "toolbartxt"
+      style: "background-color: black"
+      fullscreen: yes
+      dockedItems: [
+        xtype: "toolbar"
+        dock: "bottom"
+        items: back.concat options.concat forward
+      ]
       defaults:
-        scroll: "vertical",
-        xtype: "panel",
-        layout: "hbox",
-        pack: "justify",
-        align: "center",
-        defaults:
-          xtype: "button",
-          ui: "confirm"
+        scroll: "vertical"
+        xtype: "panel"
+        layout: "hbox"
+        pack: "justify"
+        align: "center"
     ))
+
+    # FIXME
+    Game.WIDTH = panel.width
+    Game.HEIGHT = panel.height
+
+    game = new Game
+    game.init()

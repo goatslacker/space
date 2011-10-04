@@ -70,8 +70,8 @@ Game.animate = (render, element) ->
 
   animation lastFrame
 
-Game.WIDTH = 1024
-Game.HEIGHT = 768
+Game.WIDTH = 1024 #5000
+Game.HEIGHT = 768 #5000
 Game.GRAVITY = 10
 Game.PLANETS = 5
 Game.STARS = 1000
