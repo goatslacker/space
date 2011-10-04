@@ -1,8 +1,10 @@
 # Based on Dave Bollinger`s work
 
-class Spaceship
+class Spaceship extends Element
 
-  constructor: ->
+  constructor: (@x, @y) ->
+    super @x, @y
+
     @ship = ( solid: [], cockpit: [], body: [] )
 
     # map the ship
@@ -50,9 +52,9 @@ class Spaceship
     @set = game.raph.set()
 
     # draw the pixels!
-    solid.forEach @__drawPixels Spaceship.COLORS.solid
-    cockpit.forEach @__drawPixels Spaceship.COLORS.cockpit
-    body.forEach @__drawPixels Spaceship.COLORS.body
+    solid.forEach @__drawPixels @getColor()
+    cockpit.forEach @__drawPixels @getColor()
+    body.forEach @__drawPixels @getColor()
 
   map: ->
     # blocks that are always empty
@@ -97,6 +99,12 @@ class Spaceship
   isOn: ->
     Math.round(Math.random()) is 1
 
+  # random color
+  getColor: ->
+    max = Spaceship.COLORS.length
+    color = game.rnd(1, max) - 1
+    Spaceship.COLORS[color]
+
   # "private" methods
 
   # draws colored pixels
@@ -138,11 +146,7 @@ class Spaceship
       stroke: color
     ))
 
-Spaceship.COLORS = (
-  body: "red",
-  cockpit: "white",
-  solid: "red"
-)
+Spaceship.COLORS = ["blue", "gray", "orange", "red", "white"]
 Spaceship.SIZE = 1
 Spaceship.X = 6
 Spaceship.Y = 12
