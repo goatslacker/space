@@ -36,3 +36,7 @@ document.addEventListener("keypress", ((e) ->
     when 32 then fireMissile()
 
 ), false)
+
+spaceship = new Spaceship
+print spaceship.toString()
+spaceship.draw()
