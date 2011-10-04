@@ -22,16 +22,16 @@ class Spaceship extends Element
     @draw()
 
   # Exports SVG Path
-  toString: ->
+  toSVG: ->
     { solid, cockpit, body } = @ship
     svg = ""
 
     toSVG = (block) ->
       [x, y] = block
-      sx = x * Spaceship.SIZE
-      sy = y * Spaceship.SIZE
+      sx = @x + x * Spaceship.SIZE
+      sy = @x + y * Spaceship.SIZE
 
-      mx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
+      mx = @x + ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
 
       # base
       svg += "M#{sx}, #{sy}L#{sx + 1}, #{sy + 1}"
