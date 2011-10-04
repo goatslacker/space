@@ -23,19 +23,19 @@ class Spaceship
   draw: ->
     { solid, cockpit, body } = @ship
 
-    drawer = (block) =>
+    drawPixels = (block) =>
       @drawPixel block[0], block[1]
 
-    solid.forEach drawer
-    cockpit.forEach drawer
-    body.forEach drawer
+    solid.forEach drawPixels
+    cockpit.forEach drawPixels
+    body.forEach drawPixels
 
   # TODO do SVG path instead
   drawPixel: (x, y) ->
     sx = x * Spaceship.SIZE
     sy = y * Spaceship.SIZE
     game.raph.rect(sx, sy, Spaceship.SIZE, Spaceship.SIZE).attr(
-      fill: "hsb(1, 1, 1)"
+      fill: "white"
     )
 
     @mirror x, y
@@ -44,7 +44,7 @@ class Spaceship
     sx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
     sy = y * Spaceship.SIZE
     game.raph.rect(sx, sy, Spaceship.SIZE, Spaceship.SIZE).attr(
-      fill: "hsb(1, 1, 1)"
+      fill: "white"
     )
 
   # draw`s a piece of the spaceship
@@ -97,6 +97,6 @@ class Spaceship
   isOn: ->
     Math.round(Math.random()) is 1
 
-Spaceship.SIZE = 5
+Spaceship.SIZE = 1.5
 Spaceship.X = 6
 Spaceship.Y = 12
