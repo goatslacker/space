@@ -49,13 +49,10 @@ class Spaceship
     # create a set of rectangles
     @set = game.raph.set()
 
-    # our forEach fn
-    drawPixels = (block) =>
-      @__drawPixel block[0], block[1]
-
-    solid.forEach drawPixels
-    cockpit.forEach drawPixels
-    body.forEach drawPixels
+    # draw the pixels!
+    solid.forEach @__drawPixels Spaceship.COLORS.solid
+    cockpit.forEach @__drawPixels Spaceship.COLORS.cockpit
+    body.forEach @__drawPixels Spaceship.COLORS.body
 
   map: ->
     # blocks that are always empty
@@ -102,24 +99,30 @@ class Spaceship
 
   # "private" methods
 
+  # draws colored pixels
+  __drawPixels: (color) ->
+    # our forEach fn
+    iterator = (block) =>
+      @__drawPixel block[0], block[1], color
+
   # draws a pixel on the screen given x and y coordinates
-  __drawPixel: (x, y) ->
+  __drawPixel: (x, y, color) ->
     sx = x * Spaceship.SIZE
     sy = y * Spaceship.SIZE
 
     # mirror the output
-    @__mirror x, y
+    @__mirror x, y, color
 
     # add to the set
-    @__addToSet sx, sy
+    @__addToSet sx, sy, color
 
 
   # mirrors the image
-  __mirror: (x, y) ->
+  __mirror: (x, y, color) ->
     sx = ((Spaceship.X * 2) - 1 - x) * Spaceship.SIZE
     sy = y * Spaceship.SIZE
 
-    @__addToSet sx, sy
+    @__addToSet sx, sy, color
 
   # draw`s a piece of the spaceship
   __create: (section) ->
@@ -129,13 +132,17 @@ class Spaceship
       @ship[section].push block if @isOn()
 
   # add a rectangle with x, y coordinates to the set
-  __addToSet: (x, y) ->
+  __addToSet: (x, y, color = "white") ->
     @set.push(game.raph.rect(x, y, Spaceship.SIZE, Spaceship.SIZE).attr(
-      fill: "white",
-      stroke: "white"
+      fill: color,
+      stroke: color
     ))
 
-
+Spaceship.COLORS = (
+  body: "red",
+  cockpit: "white",
+  solid: "red"
+)
 Spaceship.SIZE = 1
 Spaceship.X = 6
 Spaceship.Y = 12
