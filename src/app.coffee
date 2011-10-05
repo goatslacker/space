@@ -30,6 +30,8 @@ class App
           dockedItems: @createMenu()
         })
 
+        @dock.hide()
+
         # initialize the game
         game.init panel.width, panel.height
     })
@@ -65,12 +67,15 @@ class App
       handler: @tapHandler
     ]
 
-    dock =
-      xtype: "toolbar"
+    @dock = new Ext.Toolbar((
+      showAnimation:
+        type: "slide"
+        direction: "down"
       ui: "light"
       dock: "top"
       items: back.concat options.concat forward
       defaults:
-        disabled: true
+        disabled: false
+    ))
 
-    [dock]
+    [@dock]
