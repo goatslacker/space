@@ -5,6 +5,7 @@ class Game
     # init components
     @stars = new Stars stars
     @planets = new Planets planets
+    @player = new Player @planets.pickPlanet()
 
   rnd: (min, max) ->
     Math.floor(Math.random() * (max - min + 1)) + min

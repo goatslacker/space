@@ -73,6 +73,21 @@ class Planets
 
     [vX, vY]
 
+  pickPlanet: ->
+    i = game.rnd(1, @num_planets)
+    planet = @planets[i - 1]
+    { x, y, radius } = planet
+
+    radius = radius / 1.3
+
+    mx = game.eitheror -1, 1
+    my = game.eitheror -1, 1
+
+    x = x + (radius * mx)
+    y = y + (radius * my)
+
+    [x, y]
+
   # determines if a planet exists in coordinates provided
   planetDoesntExist: (x, y, radius) ->
     i = 0

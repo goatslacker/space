@@ -21,6 +21,8 @@ class Spaceship extends Element
 
     @draw()
 
+  health: 100
+
   # Exports SVG Path
   toSVG: ->
     { solid, cockpit, body } = @ship
