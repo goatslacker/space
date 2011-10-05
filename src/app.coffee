@@ -16,7 +16,7 @@ class App
           tabBar:
             dock: "bottom"
             scroll: "horizontal"
-            sortable: true
+            sortable: false
             layout:
               pack: "center"
 
