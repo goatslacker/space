@@ -1,36 +1,41 @@
 class App
 
   constructor: ->
-    Ext.setup
-      tabletStartupScreen: "tablet_startup.png"
-      phoneStartupScreen: "phone_startup.png"
-      icon: "icon.png"
-      glossOnIcon: false
+    Ext.setup({
+      icon: "icon.png",
+      tabletStartupScreen: "tablet_startup.png",
+      phoneStartupScreen: "phone_startup.png",
+      glossOnIcon: false,
       onReady: =>
 
-        panel = @createPanel()
+        panel = new Ext.TabPanel({
+          style: "background: black"
+          fullscreen: true
+          ui: "light"
+
+          tabBar:
+            dock: "bottom"
+            scroll: "horizontal"
+            sortable: true
+            layout:
+              pack: "center"
+
+          cls: "card1"
+          items: [
+            ( iconCls: "team", title: "Game" )
+            ( iconCls: "favorites", title: "Achievements" )
+            ( iconCls: "info", title: "Info" )
+            ( iconCls: "settings", title: "Settings" )
+          ]
+          dockedItems: @createMenu()
+        })
 
         # initialize the game
         game.init panel.width, panel.height
+    })
 
   tapHandler: (button, event) ->
     yes
-
-  createPanel: ->
-    panel = new Ext.Panel((
-      id: "toolbartxt"
-      style: "background-color: black"
-      fullscreen: yes
-      dockedItems: @createMenu()
-      defaults:
-        scroll: "vertical"
-        xtype: "panel"
-        layout: "hbox"
-        pack: "justify"
-        align: "center"
-    ))
-
-    panel
 
   createMenu: ->
 
