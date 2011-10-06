@@ -8,7 +8,7 @@ class App
       glossOnIcon: false,
       onReady: =>
 
-        panel = new Ext.TabPanel({
+        @panel = new Ext.TabPanel({
           style: "background: black"
           fullscreen: true
           ui: "light"
@@ -27,17 +27,21 @@ class App
             ( iconCls: "info", title: "Info" )
             ( iconCls: "settings", title: "Settings" )
           ]
-          dockedItems: @createMenu()
         })
 
-#        @dock.hide()
-        new Notification "hello world foobar"
+        @createMenu()
+#        @modal.hide()
+#        new Notification "hello world foobar"
 
         # initialize the game
-        game.init panel.width, panel.height
+        game.init @panel.width, @panel.height
     })
 
   tapHandler: (button, event) ->
+#    switch button.text
+#      when "Aim" then @modal.show ( type: "slide", direction: "up" )
+#      else @modal.hide()
+
     yes
 
   createMenu: ->
@@ -48,14 +52,16 @@ class App
       handler: @tapHandler
     ]
 
+    modalDialogHandler = @tapHandler.bind @
+
     options = [(
       xtype: "spacer"
     ), (
       xtype: "segmentedbutton"
       items: [
-        ( text: "Aim", handler: @tapHandler )
-        ( text: "Power", handler: @tapHandler )
-        ( text: "Weapon", handler: @tapHandler )
+        ( text: "Aim", handler: modalDialogHandler, pressed: true )
+        ( text: "Power", handler: modalDialogHandler )
+        ( text: "Weapon", handler: modalDialogHandler )
         ( xtype: "spacer" )
       ]
     ), (
@@ -79,4 +85,17 @@ class App
         disabled: false
     ))
 
-    [@dock]
+    @modal = new Ext.Panel({
+      floating: true
+      modal: false
+      centered: false
+      draggable: true
+      width: 450
+      height: 350
+#          styleHtmlContent: true
+      hideOnMaskTap: false
+      dockedItems: [@dock]
+      html: ""
+    })
+
+    @modal.show "pop"
