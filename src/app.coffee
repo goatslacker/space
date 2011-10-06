@@ -38,30 +38,40 @@ class App
     })
 
   tapHandler: (button, event) ->
-#    switch button.text
+    switch button.text
+      when "Fire!" then @fire()
+      when "Skip" then @skip()
 #      when "Aim" then @modal.show ( type: "slide", direction: "up" )
 #      else @modal.hide()
 
     yes
 
+  skip: ->
+    Ext.Msg.confirm("Skip Turn", "Are you sure you want to skip your turn?", (skipTurn) =>
+      @modal.hide() if skipTurn is "yes"
+    )
+
+  fire: ->
+    @modal.hide()
+
   createMenu: ->
+
+    menuHandler = @tapHandler.bind @
 
     back = [
       text: "Skip"
       ui: "back"
-      handler: @tapHandler
+      handler: menuHandler
     ]
-
-    modalDialogHandler = @tapHandler.bind @
 
     options = [(
       xtype: "spacer"
     ), (
       xtype: "segmentedbutton"
       items: [
-        ( text: "Aim", handler: modalDialogHandler, pressed: true )
-        ( text: "Power", handler: modalDialogHandler )
-        ( text: "Weapon", handler: modalDialogHandler )
+        ( text: "Aim", handler: menuHandler, pressed: true )
+        ( text: "Power", handler: menuHandler )
+        ( text: "Weapon", handler: menuHandler )
         ( xtype: "spacer" )
       ]
     ), (
@@ -71,7 +81,7 @@ class App
     forward = [
       text: "Fire!"
       ui: "forward"
-      handler: @tapHandler
+      handler: menuHandler
     ]
 
     @dock = new Ext.Toolbar((
