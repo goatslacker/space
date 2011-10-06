@@ -22,8 +22,8 @@ class App
 
           cls: "card1"
           items: [
-            ( iconCls: "team", title: "Game" )
-            ( iconCls: "favorites", title: "Achievements" )
+            ( iconCls: "team", title: "Game", items: [ html: "<div id=\"game\" style=\"width: 100%; height: 100%\"></div>" ] )
+            ( iconCls: "favorites", title: "Achievements", items: [ html: "hi" ] )
             ( iconCls: "info", title: "Info" )
             ( iconCls: "settings", title: "Settings" )
           ]
@@ -95,6 +95,30 @@ class App
         disabled: false
     ))
 
+    foo = new Ext.TabPanel((
+      items: [(
+        title: "Aim"
+        xtype: "form"
+        items: [
+          xtype: "fieldset"
+          items: [
+            xtype: "sliderfield"
+            name: "aim"
+          ]
+        ]
+      ), (
+        title: "Power"
+        xtype: "form"
+        items: [
+          xtype: "fieldset"
+          items: [
+            xtype: "sliderfield"
+            name: "power"
+          ]
+        ]
+      )]
+    ))
+
     @modal = new Ext.Panel({
       floating: true
       modal: false
@@ -105,7 +129,7 @@ class App
 #          styleHtmlContent: true
       hideOnMaskTap: false
       dockedItems: [@dock]
-      html: ""
+      items: foo
     })
 
     @modal.show "pop"

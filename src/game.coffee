@@ -1,6 +1,6 @@
 class Game
   init: (@width = Game.WIDTH, @height = Game.HEIGHT, planets, stars) ->
-    @raph = Raphael 0, 0, @width, @height
+    @raph = Raphael "game", @width, @height
 
     # init components
     @stars = new Stars stars
