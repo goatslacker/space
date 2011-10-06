@@ -30,7 +30,8 @@ class App
           dockedItems: @createMenu()
         })
 
-        @dock.hide()
+#        @dock.hide()
+        new Notification "hello world foobar"
 
         # initialize the game
         game.init panel.width, panel.height

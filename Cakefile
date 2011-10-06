@@ -1,4 +1,4 @@
-files = ['app', 'game', 'element', 'spaceship', 'explosion', 'missile', 'small-missile', 'planet', 'planets', 'star', 'stars', 'index']
+files = ['app', 'game', 'notification', 'element', 'spaceship', 'explosion', 'missile', 'small-missile', 'planet', 'planets', 'star', 'stars', 'index']
 dir = 'src'
 
 fs = require 'fs'
