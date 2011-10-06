@@ -1,6 +1,8 @@
 class App
 
   constructor: ->
+    Ext.regModel "Weapons", ( fields: ["name"] )
+
     Ext.setup({
       icon: "icon.png",
       tabletStartupScreen: "tablet_startup.png",
@@ -19,7 +21,6 @@ class App
             layout:
               pack: "center"
 
-          cls: "card1"
           items: [
             ( iconCls: "team", title: "Game", items: @__getGame() )
             ( iconCls: "favorites", title: "Achievements", items: @__getAchievements() )
@@ -48,6 +49,20 @@ class App
 
   __getSettings: ->
     []
+
+  __getWeapons: ->
+    return @weapons if @weapons
+
+    @weapons = new Ext.data.Store((
+      model: "Weapons"
+      sorters: "name"
+      data: [
+        ( name: "Small Missile" )
+        ( name: "Medium Missile" )
+      ]
+    ))
+
+    @weapons
 
   tapHandler: (button, event) ->
     switch button.text
@@ -107,27 +122,26 @@ class App
         disabled: false
     ))
 
-    foo = new Ext.TabPanel((
+    apw = new Ext.TabPanel((
+      tabBar:
+        dock: "bottom"
+        scroll: "horizontal"
+        sortable: false
+        layout:
+          pack: "center"
+
       items: [(
         title: "Aim"
         xtype: "form"
-        items: [
-          xtype: "fieldset"
-          items: [
-            xtype: "sliderfield"
-            name: "aim"
-          ]
-        ]
+        items: [( xtype: "sliderfield" )]
       ), (
         title: "Power"
         xtype: "form"
-        items: [
-          xtype: "fieldset"
-          items: [
-            xtype: "sliderfield"
-            name: "power"
-          ]
-        ]
+        items: [( xtype: "sliderfield" )]
+        title: "Power"
+      ), (
+        title: "Weapon"
+        items: [( xtype: "list", store: @__getWeapons(), itemTpl: "<div><strong>[name]</strong></div>" )]
       )]
     ))
 
@@ -138,10 +152,14 @@ class App
       draggable: true
       width: 450
       height: 350
-#          styleHtmlContent: true
+#      styleHtmlContent: true
       hideOnMaskTap: false
       dockedItems: [@dock]
-      items: foo
+      items: apw
+#      [
+#        xtype: "form"
+#        items: [( xtype: "sliderfield" )]
+#      ]
     })
 
     @modal.show "pop"
