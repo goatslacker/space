@@ -9,10 +9,9 @@ class App
       onReady: =>
 
         @panel = new Ext.TabPanel({
-          style: "background: black"
           fullscreen: true
           ui: "light"
-
+          cardSwitchAnimation: "flip"
           tabBar:
             dock: "bottom"
             scroll: "horizontal"
@@ -22,10 +21,10 @@ class App
 
           cls: "card1"
           items: [
-            ( iconCls: "team", title: "Game", items: [ html: "<div id=\"game\" style=\"width: 100%; height: 100%\"></div>" ] )
-            ( iconCls: "favorites", title: "Achievements", items: [ html: "hi" ] )
-            ( iconCls: "info", title: "Info" )
-            ( iconCls: "settings", title: "Settings" )
+            ( iconCls: "team", title: "Game", items: @__getGame() )
+            ( iconCls: "favorites", title: "Achievements", items: @__getAchievements() )
+            ( iconCls: "info", title: "Info", items: @__getInfo() )
+            ( iconCls: "settings", title: "Settings", items: @__getSettings() )
           ]
         })
 
@@ -36,6 +35,19 @@ class App
         # initialize the game
         game.init @panel.width, @panel.height
     })
+
+
+  __getGame: ->
+    [ html: "<div id=\"game\" style=\"width: 100%; height: 100%; background: black\"></div>" ]
+
+  __getAchievements: ->
+    []
+
+  __getInfo: ->
+    []
+
+  __getSettings: ->
+    []
 
   tapHandler: (button, event) ->
     switch button.text
